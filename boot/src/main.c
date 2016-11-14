@@ -68,25 +68,17 @@ _NOINS void disable_jtag_ctrl_exception(void)
 
 void syscall_A(void)
 {
-	int *epcr;
-	printf("11\n");	
+	UINT *epcr = (UINT *) mfspr(SPR_EPCR_BASE);
+	epcr--;
+	
+	switch((*epcr) & 0x0000FFFF){		// System Call Instruction Value
+		case 0x01	:	printf("Syscall : 0x01\n"); break;
+		case 0x02	:	printf("Syscall : 0x02\n"); break;
+		case 0x03	:	printf("Syscall : 0x03\n"); break;
+		case 0x04	:	printf("Syscall : 0x04\n"); break;
+		default		:	printf("Syscall : anything else\n"); break;
+	}
 }
-
-void syscall_B(void)
-{
-	printf("22\n");	
-}
-
-void syscall_C(void)
-{
-	printf("33\n");	
-}
-
-void syscall_D(void)
-{
-	printf("44\n");	
-}
-
 void trapcall_A(uint *addr)
 {
 	printf("AA\n");
@@ -107,7 +99,11 @@ int main(void)
 	
 	printf("\nCPU START\n");
 	
-	asm("l.sys 1024");
+	asm("l.sys 1");
+	asm("l.sys 2");
+	asm("l.sys 3");
+	asm("l.sys 4");
+	asm("l.sys 5");
 	
 int i=0;
 for(i=0;i<32;i++){

@@ -24,9 +24,6 @@ symbol:																			// $CMT-ygkim-150730: to define label
 				.extern	_enable_dcache
 
         .extern syscall_A
-        .extern syscall_B
-        .extern syscall_C
-        .extern syscall_D
         .extern trapcall_A
         .extern XsrBreak
         .extern XsrTrap
@@ -281,7 +278,6 @@ _float_vector:
 //-----------------------------------------------------------------------------
         .org 0xc00
 _syscall_vector:
-	l.trap	0
     PROLOG
     CALL(syscall_A)
     EPILOG

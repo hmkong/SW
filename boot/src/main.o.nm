@@ -6,11 +6,9 @@
          U WaitXms
 0000001c T disable_jtag_ctrl_exception
 00000000 T enable_jtag_ctrl_exception
-00000108 T main
+0000013c T main
+         U mfspr
          U mtspr
          U printf
 00000038 T syscall_A
-00000054 T syscall_B
-00000070 T syscall_C
-0000008c T syscall_D
-000000a8 T trapcall_A
+000000dc T trapcall_A
