@@ -33,19 +33,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   8 .debug_pubnames 000000a1  00000000  00000000  00004a25  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_info   00000161  00000000  00000000  00004ac6  2**0
+  9 .debug_info   00000177  00000000  00000000  00004ac6  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_abbrev 000000a1  00000000  00000000  00004c27  2**0
+ 10 .debug_abbrev 000000ae  00000000  00000000  00004c3d  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_line   0000024e  00000000  00000000  00004cc8  2**0
+ 11 .debug_line   0000024e  00000000  00000000  00004ceb  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_frame  00000614  00000000  00000000  00004f18  2**2
+ 12 .debug_frame  00000614  00000000  00000000  00004f3c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_str    00000100  00000000  00000000  0000552c  2**0
+ 13 .debug_str    00000105  00000000  00000000  00005550  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_loc    00000196  00000000  00000000  0000562c  2**0
+ 14 .debug_loc    00000196  00000000  00000000  00005655  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_pubtypes 0000001b  00000000  00000000  000057c2  2**0
+ 15 .debug_pubtypes 0000001b  00000000  00000000  000057eb  2**0
                   CONTENTS, READONLY, DEBUGGING
 SYMBOL TABLE:
 04000000 l    d  .reset	00000000 .reset
@@ -682,34 +682,35 @@ Disassembly of section .reset:
 	...
 
 04000c00 <_syscall_vector>:
- 4000c00:	9c 21 ff 00 	l.addi r1,r1,0xffffff00
- 4000c04:	d4 01 18 04 	l.sw 0x4(r1),r3
- 4000c08:	d4 01 48 1c 	l.sw 0x1c(r1),r9
- 4000c0c:	18 60 04 00 	l.movhi r3,0x400
- 4000c10:	a8 63 0e 70 	l.ori r3,r3,0xe70
- 4000c14:	48 00 18 00 	l.jalr r3
- 4000c18:	15 00 00 00 	l.nop 0x0
- 4000c1c:	18 60 04 00 	l.movhi r3,0x400
- 4000c20:	a8 63 7b fc 	l.ori r3,r3,0x7bfc
- 4000c24:	d4 03 08 00 	l.sw 0x0(r3),r1
- 4000c28:	9c 63 ff fc 	l.addi r3,r3,0xfffffffc
- 4000c2c:	9c 23 00 00 	l.addi r1,r3,0x0
- 4000c30:	18 60 04 00 	l.movhi r3,0x400
- 4000c34:	a8 63 10 d8 	l.ori r3,r3,0x10d8
- 4000c38:	48 00 18 00 	l.jalr r3
- 4000c3c:	15 00 00 00 	l.nop 0x0
- 4000c40:	18 60 04 00 	l.movhi r3,0x400
- 4000c44:	a8 63 7b fc 	l.ori r3,r3,0x7bfc
- 4000c48:	84 23 00 00 	l.lwz r1,0x0(r3)
- 4000c4c:	18 60 04 00 	l.movhi r3,0x400
- 4000c50:	a8 63 0e e8 	l.ori r3,r3,0xee8
- 4000c54:	48 00 18 00 	l.jalr r3
- 4000c58:	15 00 00 00 	l.nop 0x0
- 4000c5c:	84 61 00 04 	l.lwz r3,0x4(r1)
- 4000c60:	85 21 00 1c 	l.lwz r9,0x1c(r1)
- 4000c64:	9c 21 01 00 	l.addi r1,r1,0x100
- 4000c68:	24 00 00 00 	l.rfe 
- 4000c6c:	15 00 00 00 	l.nop 0x0
+ 4000c00:	21 00 00 00 	l.trap 0x0
+ 4000c04:	9c 21 ff 00 	l.addi r1,r1,0xffffff00
+ 4000c08:	d4 01 18 04 	l.sw 0x4(r1),r3
+ 4000c0c:	d4 01 48 1c 	l.sw 0x1c(r1),r9
+ 4000c10:	18 60 04 00 	l.movhi r3,0x400
+ 4000c14:	a8 63 0e 70 	l.ori r3,r3,0xe70
+ 4000c18:	48 00 18 00 	l.jalr r3
+ 4000c1c:	15 00 00 00 	l.nop 0x0
+ 4000c20:	18 60 04 00 	l.movhi r3,0x400
+ 4000c24:	a8 63 7b fc 	l.ori r3,r3,0x7bfc
+ 4000c28:	d4 03 08 00 	l.sw 0x0(r3),r1
+ 4000c2c:	9c 63 ff fc 	l.addi r3,r3,0xfffffffc
+ 4000c30:	9c 23 00 00 	l.addi r1,r3,0x0
+ 4000c34:	18 60 04 00 	l.movhi r3,0x400
+ 4000c38:	a8 63 10 d8 	l.ori r3,r3,0x10d8
+ 4000c3c:	48 00 18 00 	l.jalr r3
+ 4000c40:	15 00 00 00 	l.nop 0x0
+ 4000c44:	18 60 04 00 	l.movhi r3,0x400
+ 4000c48:	a8 63 7b fc 	l.ori r3,r3,0x7bfc
+ 4000c4c:	84 23 00 00 	l.lwz r1,0x0(r3)
+ 4000c50:	18 60 04 00 	l.movhi r3,0x400
+ 4000c54:	a8 63 0e e8 	l.ori r3,r3,0xee8
+ 4000c58:	48 00 18 00 	l.jalr r3
+ 4000c5c:	15 00 00 00 	l.nop 0x0
+ 4000c60:	84 61 00 04 	l.lwz r3,0x4(r1)
+ 4000c64:	85 21 00 1c 	l.lwz r9,0x1c(r1)
+ 4000c68:	9c 21 01 00 	l.addi r1,r1,0x100
+ 4000c6c:	24 00 00 00 	l.rfe 
+ 4000c70:	15 00 00 00 	l.nop 0x0
 	...
 
 04000d00 <_break_vector>:
@@ -757,7 +758,7 @@ Disassembly of section .reset:
  4000e28:	9c 63 ff fc 	l.addi r3,r3,0xfffffffc
  4000e2c:	9c 23 00 00 	l.addi r1,r3,0x0
  4000e30:	18 60 04 00 	l.movhi r3,0x400
- 4000e34:	a8 63 11 48 	l.ori r3,r3,0x1148
+ 4000e34:	a8 63 1b d8 	l.ori r3,r3,0x1bd8
  4000e38:	48 00 18 00 	l.jalr r3
  4000e3c:	15 00 00 00 	l.nop 0x0
  4000e40:	18 60 04 00 	l.movhi r3,0x400
@@ -983,16 +984,17 @@ void syscall_A(void)
 {
  40010d8:	d7 e1 4f fc 	l.sw 0xfffffffc(r1),r9
  40010dc:	9c 21 ff fc 	l.addi r1,r1,0xfffffffc
+	int *epcr;
 	printf("11\n");	
  40010e0:	18 60 04 00 	l.movhi r3,0x400
 }
  40010e4:	9c 21 00 04 	l.addi r1,r1,0x4
  40010e8:	85 21 ff fc 	l.lwz r9,0xfffffffc(r1)
-	mtspr(EXR1K_DSR,0);
 }
 
 void syscall_A(void)
 {
+	int *epcr;
 	printf("11\n");	
  40010ec:	00 00 05 50 	l.j 400262c <printf>
  40010f0:	a8 63 10 64 	l.ori r3,r3,0x1064
@@ -1155,9 +1157,6 @@ int main(void)
 	
 	asm("l.sys 1024");
  40011e4:	20 00 04 00 	l.sys 0x400
-//	asm("l.sys 1");
-//	asm("l.sys 2");
-//	asm("l.sys 3");
 	
 int i=0;
 for(i=0;i<32;i++){
@@ -1173,9 +1172,9 @@ for(i=0;i<32;i++){
  40011fc:	a8 62 00 00 	l.ori r3,r2,0x0
  4001200:	04 00 00 dc 	l.jal 4001570 <GpioSetLo>
  4001204:	9c 42 00 01 	l.addi r2,r2,0x1
-//	asm("l.sys 1");
-//	asm("l.sys 2");
-//	asm("l.sys 3");
+	printf("\nCPU START\n");
+	
+	asm("l.sys 1024");
 	
 int i=0;
 for(i=0;i<32;i++){
@@ -2920,7 +2919,7 @@ Disassembly of section .debug_pubnames:
    0:	00 00 00 9d 	l.j 274 <heap_size+0x174>
    4:	00 02 00 00 	l.j 80004 <__lma_size+0x7d624>
    8:	00 00 00 00 	l.j 8 <__lma_start+0x8>
-   c:	01 61 00 00 	l.j 584000c <__isr_stack_s+0x183800c>
+   c:	01 77 00 00 	l.j 5dc000c <__isr_stack_s+0x1db800c>
   10:	00 7d 65 6e 	l.j 1f595c8 <__lma_size+0x1f56be8>
   14:	61 62 6c 65 	.word 0x61626c65
   18:	5f 6a 74 61 	.word 0x5f6a7461
@@ -2940,21 +2939,21 @@ Disassembly of section .debug_pubnames:
   50:	a7 73 79 73 	l.andi r27,r19,0x7973
   54:	63 61 6c 6c 	.word 0x63616c6c
   58:	5f 41 00 00 	.word 0x5f410000
-  5c:	00 00 bc 73 	l.j 2f228 <__lma_size+0x2c848>
+  5c:	00 00 d2 73 	l.j 34a28 <__lma_size+0x32048>
   60:	79 73 63 61 	l.cust3 
   64:	6c 6c 5f 42 	.word 0x6c6c5f42
   68:	00 00 00 00 	l.j 68 <__lma_start+0x68>
-  6c:	d1 73 79 73 	l.sd 0x5973(r19),r15
+  6c:	e7 73 79 73 	.word 0xe7737973
   70:	63 61 6c 6c 	.word 0x63616c6c
   74:	5f 43 00 00 	.word 0x5f430000
-  78:	00 00 e6 73 	l.j 39a44 <__lma_size+0x37064>
+  78:	00 00 fc 73 	l.j 3f244 <__lma_size+0x3c864>
   7c:	79 73 63 61 	l.cust3 
   80:	6c 6c 5f 44 	.word 0x6c6c5f44
-  84:	00 00 00 00 	l.j 84 <__lma_start+0x84>
-  88:	fb 74 72 61 	l.cust7 
+  84:	00 00 00 01 	l.j 88 <__lma_start+0x88>
+  88:	11 74 72 61 	l.bf 5d1ca0c <__isr_stack_s+0x1d14a0c>
   8c:	70 63 61 6c 	l.cust1 
   90:	6c 5f 41 00 	.word 0x6c5f4100
-  94:	00 00 01 2a 	l.j 53c <except_stack_size+0x13c>
+  94:	00 00 01 40 	l.j 594 <except_stack_size+0x194>
   98:	6d 61 69 6e 	.word 0x6d61696e
   9c:	00 00 00 00 	l.j 9c <__lma_start+0x9c>
 	...
@@ -2962,10 +2961,10 @@ Disassembly of section .debug_pubnames:
 Disassembly of section .debug_info:
 
 00000000 <.debug_info>:
-   0:	00 00 01 5d 	l.j 574 <except_stack_size+0x174>
+   0:	00 00 01 73 	l.j 5cc <except_stack_size+0x1cc>
    4:	00 02 00 00 	l.j 80004 <__lma_size+0x7d624>
    8:	00 00 04 01 	l.j 100c <except_stack_size+0xc0c>
-   c:	00 00 00 e8 	l.j 3ac <heap_size+0x2ac>
+   c:	00 00 00 ed 	l.j 3c0 <heap_size+0x2c0>
   10:	01 00 00 00 	l.j 4000010 <_text_lma_s>
   14:	5d 00 00 00 	.word 0x5d000000
   18:	9c 04 00 10 	l.addi r0,r4,0x10
@@ -2984,7 +2983,7 @@ Disassembly of section .debug_info:
   4c:	03 01 06 00 	l.j fc04184c <__isr_stack_s+0xf803984c>
   50:	00 00 6f 03 	l.j 1bc5c <__lma_size+0x1927c>
   54:	02 05 00 00 	l.j f8140054 <__isr_stack_s+0xf4138054>
-  58:	00 de 03 02 	l.j 3780c60 <__lma_size+0x377e280>
+  58:	00 e3 03 02 	l.j 38c0c60 <__lma_size+0x38be280>
   5c:	07 00 00 00 	l.jal fc00005c <__isr_stack_s+0xf7ff805c>
   60:	cb 03 04 05 	lf.ftoi.s r24,r3
   64:	00 00 00 05 	l.j 78 <__lma_start+0x78>
@@ -3003,54 +3002,60 @@ Disassembly of section .debug_info:
   98:	01 40 01 04 	l.j 50004a8 <__isr_stack_s+0xff84a8>
   9c:	00 10 bc 04 	l.j 42f0ac <__lma_size+0x42c6cc>
   a0:	00 10 d8 00 	l.j 4360a0 <__lma_size+0x4336c0>
-  a4:	00 00 20 05 	l.j 80b8 <__lma_size+0x56d8>
+  a4:	00 00 20 06 	l.j 80bc <__lma_size+0x56dc>
   a8:	01 00 00 00 	l.j 40000a8 <_stack_e+0x34>
   ac:	1e 01 45 01 	.word 0x1e014501
   b0:	04 00 10 d8 	l.jal 4410 <__lma_size+0x1a30>
   b4:	04 00 10 f4 	l.jal 4484 <__lma_size+0x1aa4>
   b8:	00 00 00 40 	l.j 1b8 <heap_size+0xb8>
-  bc:	05 01 00 00 	l.jal 40400bc <__isr_stack_s+0x380bc>
-  c0:	00 28 01 4a 	l.j a005e8 <__lma_size+0x9fdc08>
-  c4:	01 04 00 10 	l.j 4100104 <__isr_stack_s+0xf8104>
-  c8:	f4 04 00 11 	l.cust6 
-  cc:	10 00 00 00 	l.bf cc <__lma_start+0xcc>
-  d0:	60 05 01 00 	.word 0x60050100
-  d4:	00 00 32 01 	l.j c8d8 <__lma_size+0x9ef8>
-  d8:	4f 01 04 00 	l.maci r1,0x400
-  dc:	11 10 04 00 	l.bf 44010dc <__isr_stack_s+0x3f90dc>
-  e0:	11 2c 00 00 	l.bf 4b000e0 <__isr_stack_s+0xaf80e0>
-  e4:	00 80 05 01 	l.j 20014e8 <__lma_size+0x1ffeb08>
-  e8:	00 00 00 3c 	l.j 1d8 <heap_size+0xd8>
-  ec:	01 54 01 04 	l.j 55004fc <__isr_stack_s+0x14f84fc>
-  f0:	00 11 2c 04 	l.j 44b100 <__lma_size+0x448720>
-  f4:	00 11 48 00 	l.j 4520f4 <__lma_size+0x44f714>
-  f8:	00 00 a0 06 	l.j 28110 <__lma_size+0x25730>
-  fc:	01 00 00 00 	l.j 40000fc <_stack_e+0x88>
- 100:	0e 01 59 01 	l.bnf f8056504 <__isr_stack_s+0xf404e504>
- 104:	04 00 11 48 	l.jal 4624 <__lma_size+0x1c44>
- 108:	04 00 11 a8 	l.jal 47a8 <__lma_size+0x1dc8>
- 10c:	00 00 00 c0 	l.j 40c <except_stack_size+0xc>
- 110:	00 00 01 24 	l.j 5a0 <except_stack_size+0x1a0>
- 114:	07 00 00 00 	l.jal fc000114 <__isr_stack_s+0xf7ff8114>
- 118:	68 01 59 00 	.word 0x68015900
- 11c:	00 01 24 00 	l.j 4911c <__lma_size+0x4673c>
- 120:	00 00 e0 00 	l.j 38120 <__lma_size+0x35740>
- 124:	08 04 00 00 	.word 0x08040000
- 128:	00 33 09 01 	l.j cc252c <__lma_size+0xcbfb4c>
- 12c:	00 00 00 97 	l.j 388 <heap_size+0x288>
- 130:	01 62 01 00 	l.j 5880530 <__isr_stack_s+0x1878530>
- 134:	00 00 25 04 	l.j 9544 <__lma_size+0x6b64>
- 138:	00 11 a8 04 	l.j 46a148 <__lma_size+0x467768>
- 13c:	00 12 70 00 	l.j 49c13c <__lma_size+0x49975c>
- 140:	00 01 22 0a 	l.j 48968 <__lma_size+0x45f88>
- 144:	69 00 01 72 	.word 0x69000172
- 148:	00 00 00 25 	l.j 1dc <heap_size+0xdc>
- 14c:	00 00 01 42 	l.j 654 <except_stack_size+0x254>
- 150:	0a 63 6e 74 	.word 0x0a636e74
- 154:	00 01 7a 00 	l.j 5e954 <__lma_size+0x5bf74>
- 158:	00 00 25 00 	l.j 9558 <__lma_size+0x6b78>
- 15c:	00 01 78 00 	l.j 5e15c <__lma_size+0x5b77c>
-	...
+  bc:	00 00 00 cc 	l.j 3ec <heap_size+0x2ec>
+  c0:	07 00 00 00 	l.jal fc0000c0 <__isr_stack_s+0xf7ff80c0>
+  c4:	de 01 47 00 	l.sh 0xffff8700(r1),r8
+  c8:	00 00 cc 00 	l.j 330c8 <__lma_size+0x306e8>
+  cc:	08 04 00 00 	.word 0x08040000
+  d0:	00 25 05 01 	l.j 9414d4 <__lma_size+0x93eaf4>
+  d4:	00 00 00 28 	l.j 174 <heap_size+0x74>
+  d8:	01 4b 01 04 	l.j 52c04e8 <__isr_stack_s+0x12b84e8>
+  dc:	00 10 f4 04 	l.j 43d0ec <__lma_size+0x43a70c>
+  e0:	00 11 10 00 	l.j 4440e0 <__lma_size+0x441700>
+  e4:	00 00 60 05 	l.j 180f8 <__lma_size+0x15718>
+  e8:	01 00 00 00 	l.j 40000e8 <_stack_e+0x74>
+  ec:	32 01 50 01 	.word 0x32015001
+  f0:	04 00 11 10 	l.jal 4530 <__lma_size+0x1b50>
+  f4:	04 00 11 2c 	l.jal 45a4 <__lma_size+0x1bc4>
+  f8:	00 00 00 80 	l.j 2f8 <heap_size+0x1f8>
+  fc:	05 01 00 00 	l.jal 40400fc <__isr_stack_s+0x380fc>
+ 100:	00 3c 01 55 	l.j f00654 <__lma_size+0xefdc74>
+ 104:	01 04 00 11 	l.j 4100148 <__isr_stack_s+0xf8148>
+ 108:	2c 04 00 11 	.word 0x2c040011
+ 10c:	48 00 00 00 	l.jalr r0
+ 110:	a0 06 01 00 	l.addic r0,r6,0x100
+ 114:	00 00 0e 01 	l.j 3918 <__lma_size+0xf38>
+ 118:	5a 01 04 00 	.word 0x5a010400
+ 11c:	11 48 04 00 	l.bf 520111c <__isr_stack_s+0x11f911c>
+ 120:	11 a8 00 00 	l.bf 6a00120 <__isr_stack_s+0x29f8120>
+ 124:	00 c0 00 00 	l.j 3000124 <__lma_size+0x2ffd744>
+ 128:	01 3a 09 00 	l.j 4e82528 <__isr_stack_s+0xe7a528>
+ 12c:	00 00 68 01 	l.j 1a130 <__lma_size+0x17750>
+ 130:	5a 00 00 01 	.word 0x5a000001
+ 134:	3a 00 00 00 	.word 0x3a000000
+ 138:	e0 00 08 04 	l.or r0,r0,r1
+ 13c:	00 00 00 33 	l.j 208 <heap_size+0x108>
+ 140:	0a 01 00 00 	.word 0x0a010000
+ 144:	00 97 01 63 	l.j 25c06d0 <__lma_size+0x25bdcf0>
+ 148:	01 00 00 00 	l.j 4000148 <_reset+0x48>
+ 14c:	25 04 00 11 	l.rfe 
+ 150:	a8 04 00 12 	l.ori r0,r4,0x12
+ 154:	70 00 00 01 	l.cust1 
+ 158:	22 0b 69 00 	.word 0x220b6900
+ 15c:	01 70 00 00 	l.j 5c0015c <__isr_stack_s+0x1bf815c>
+ 160:	00 25 00 00 	l.j 940160 <__lma_size+0x93d780>
+ 164:	01 42 0b 63 	l.j 5082ef0 <__isr_stack_s+0x107aef0>
+ 168:	6e 74 00 01 	.word 0x6e740001
+ 16c:	78 00 00 00 	l.cust3 
+ 170:	25 00 00 01 	l.rfe 
+ 174:	Address 0x0000000000000174 is out of bounds.
+
 
 Disassembly of section .debug_abbrev:
 
@@ -3079,22 +3084,25 @@ Disassembly of section .debug_abbrev:
   54:	3b 0b 27 0c 	.word 0x3b0b270c
   58:	11 01 12 01 	l.bf 404485c <__isr_stack_s+0x3c85c>
   5c:	40 06 01 13 	.word 0x40060113
-  60:	00 00 07 05 	l.j 1c74 <except_stack_size+0x1874>
+  60:	00 00 07 34 	l.j 1d30 <except_stack_size+0x1930>
   64:	00 03 0e 3a 	l.j c394c <__lma_size+0xc0f6c>
   68:	0b 3b 0b 49 	.word 0x0b3b0b49
-  6c:	13 02 06 00 	l.bf fc08186c <__isr_stack_s+0xf807986c>
-  70:	00 08 0f 00 	l.j 203c70 <__lma_size+0x201290>
-  74:	0b 0b 49 13 	.word 0x0b0b4913
-  78:	00 00 09 2e 	l.j 2530 <except_stack_size+0x2130>
-  7c:	01 3f 0c 03 	l.j 4fc3088 <__isr_stack_s+0xfbb088>
-  80:	0e 3a 0b 3b 	l.bnf f8e82d6c <__isr_stack_s+0xf4e7ad6c>
-  84:	0b 27 0c 49 	.word 0x0b270c49
-  88:	13 11 01 12 	l.bf fc4404d0 <__isr_stack_s+0xf84384d0>
-  8c:	01 40 06 00 	l.j 500188c <__isr_stack_s+0xff988c>
-  90:	00 0a 34 00 	l.j 28d090 <__lma_size+0x28a6b0>
-  94:	03 08 3a 0b 	l.j fc20e8c0 <__isr_stack_s+0xf82068c0>
-  98:	3b 0b 49 13 	.word 0x3b0b4913
-  9c:	02 06 00 00 	l.j f818009c <__isr_stack_s+0xf417809c>
+  6c:	13 00 00 08 	l.bf fc00008c <__isr_stack_s+0xf7ff808c>
+  70:	0f 00 0b 0b 	l.bnf fc002c9c <__isr_stack_s+0xf7ffac9c>
+  74:	49 13 00 00 	l.jalr r0
+  78:	09 05 00 03 	.word 0x09050003
+  7c:	0e 3a 0b 3b 	l.bnf f8e82d68 <__isr_stack_s+0xf4e7ad68>
+  80:	0b 49 13 02 	.word 0x0b491302
+  84:	06 00 00 0a 	l.jal f80000ac <__isr_stack_s+0xf3ff80ac>
+  88:	2e 01 3f 0c 	.word 0x2e013f0c
+  8c:	03 0e 3a 0b 	l.j fc38e8b8 <__isr_stack_s+0xf83868b8>
+  90:	3b 0b 27 0c 	.word 0x3b0b270c
+  94:	49 13 11 01 	l.jalr r2
+  98:	12 01 40 06 	l.bf f80500b0 <__isr_stack_s+0xf40480b0>
+  9c:	00 00 0b 34 	l.j 2d6c <__lma_size+0x38c>
+  a0:	00 03 08 3a 	l.j c2188 <__lma_size+0xbf7a8>
+  a4:	0b 3b 0b 49 	.word 0x0b3b0b49
+  a8:	13 02 06 00 	l.bf fc0818a8 <__isr_stack_s+0xf80798a8>
 	...
 
 Disassembly of section .debug_line:
@@ -3141,7 +3149,7 @@ Disassembly of section .debug_line:
   98:	05 02 04 00 	l.jal 4081098 <__isr_stack_s+0x79098>
   9c:	10 d8 18 00 	l.bf 360609c <__lma_size+0x36036bc>
   a0:	05 02 04 00 	l.jal 40810a0 <__isr_stack_s+0x790a0>
-  a4:	10 e0 15 00 	l.bf 38054a4 <__lma_size+0x3802ac4>
+  a4:	10 e0 16 00 	l.bf 38058a4 <__lma_size+0x3802ec4>
   a8:	05 02 04 00 	l.jal 40810a8 <__isr_stack_s+0x790a8>
   ac:	10 e4 15 00 	l.bf 39054ac <__lma_size+0x3902acc>
   b0:	05 02 04 00 	l.jal 40810b0 <__isr_stack_s+0x790b0>
@@ -3209,7 +3217,7 @@ Disassembly of section .debug_line:
  1a8:	05 02 04 00 	l.jal 40811a8 <__isr_stack_s+0x791a8>
  1ac:	11 e4 16 00 	l.bf 79059ac <__isr_stack_s+0x38fd9ac>
  1b0:	05 02 04 00 	l.jal 40811b0 <__isr_stack_s+0x791b0>
- 1b4:	11 e8 1a 00 	l.bf 7a069b4 <__isr_stack_s+0x39fe9b4>
+ 1b4:	11 e8 17 00 	l.bf 7a05db4 <__isr_stack_s+0x39fddb4>
  1b8:	05 02 04 00 	l.jal 40811b8 <__isr_stack_s+0x791b8>
  1bc:	11 ec 16 00 	l.bf 7b059bc <__isr_stack_s+0x3afd9bc>
  1c0:	05 02 04 00 	l.jal 40811c0 <__isr_stack_s+0x791c0>
@@ -3700,15 +3708,17 @@ Disassembly of section .debug_str:
   d0:	20 75 6e 73 	.word 0x20756e73
   d4:	69 67 6e 65 	.word 0x69676e65
   d8:	64 20 69 6e 	.word 0x6420696e
-  dc:	74 00 73 68 	l.cust2 
-  e0:	6f 72 74 20 	.word 0x6f727420
-  e4:	69 6e 74 00 	.word 0x696e7400
-  e8:	47 4e 55 20 	l.jr r10
-  ec:	43 20 34 2e 	.word 0x4320342e
-  f0:	35 2e 31 2d 	.word 0x352e312d
-  f4:	6f 72 33 32 	.word 0x6f723332
-  f8:	2d 31 2e 30 	.word 0x2d312e30
-  fc:	72 63 34 00 	l.cust1 
+  dc:	74 00 65 70 	l.cust2 
+  e0:	63 72 00 73 	.word 0x63720073
+  e4:	68 6f 72 74 	.word 0x686f7274
+  e8:	20 69 6e 74 	.word 0x20696e74
+  ec:	00 47 4e 55 	l.j 11d3a40 <__lma_size+0x11d1060>
+  f0:	20 43 20 34 	.word 0x20432034
+  f4:	2e 35 2e 31 	.word 0x2e352e31
+  f8:	2d 6f 72 33 	.word 0x2d6f7233
+  fc:	32 2d 31 2e 	.word 0x322d312e
+ 100:	30 72 63 34 	.word 0x30726334
+	...
 
 Disassembly of section .debug_loc:
 
@@ -3812,7 +3822,7 @@ Disassembly of section .debug_pubtypes:
    0:	00 00 00 17 	l.j 5c <__lma_start+0x5c>
    4:	00 02 00 00 	l.j 80004 <__lma_size+0x7d624>
    8:	00 00 00 00 	l.j 8 <__lma_start+0x8>
-   c:	01 61 00 00 	l.j 584000c <__isr_stack_s+0x183800c>
+   c:	01 77 00 00 	l.j 5dc000c <__isr_stack_s+0x1db800c>
   10:	00 33 75 69 	l.j cdd5b4 <__lma_size+0xcdabd4>
   14:	6e 74 00 00 	.word 0x6e740000
   18:	Address 0x0000000000000018 is out of bounds.

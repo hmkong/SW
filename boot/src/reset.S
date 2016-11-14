@@ -281,7 +281,7 @@ _float_vector:
 //-----------------------------------------------------------------------------
         .org 0xc00
 _syscall_vector:
-//	l.trap	0
+	l.trap	0
     PROLOG
     CALL(syscall_A)
     EPILOG
@@ -297,8 +297,8 @@ _break_vector:
         .org 0xe00
 _trap_vector:
 		PROLOG
-//		CALL(XsrTrap)
-		CALL(trapcall_A)
+		CALL(XsrTrap)
+//		CALL(trapcall_A)
 		EPILOG
 
 //-----------------------------------------------------------------------------

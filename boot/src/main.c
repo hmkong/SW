@@ -68,6 +68,7 @@ _NOINS void disable_jtag_ctrl_exception(void)
 
 void syscall_A(void)
 {
+	int *epcr;
 	printf("11\n");	
 }
 
@@ -107,9 +108,6 @@ int main(void)
 	printf("\nCPU START\n");
 	
 	asm("l.sys 1024");
-//	asm("l.sys 1");
-//	asm("l.sys 2");
-//	asm("l.sys 3");
 	
 int i=0;
 for(i=0;i<32;i++){
