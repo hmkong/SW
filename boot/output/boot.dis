@@ -1133,15 +1133,15 @@ void trapcall_A(void)
 {
  40011dc:	d7 e1 4f fc 	l.sw 0xfffffffc(r1),r9
 	volatile UINT *addr = (UINT *) 0x04001000;
-	UINT epcr = mfspr(SPR_EPCR_BASE) + sizeof(UINT);
+	UINT epcr = mfspr(SPR_EPCR_BASE);
  40011e0:	9c 60 00 20 	l.addi r3,r0,0x20
  40011e4:	04 00 01 4e 	l.jal 400171c <mfspr>
  40011e8:	9c 21 ff f4 	l.addi r1,r1,0xfffffff4
 	
-	mtspr(SPR_EPCR_BASE, epcr);
+	mtspr(SPR_EPCR_BASE, ++epcr);
  40011ec:	9c 60 00 20 	l.addi r3,r0,0x20
  40011f0:	04 00 01 48 	l.jal 4001710 <mtspr>
- 40011f4:	9c 8b 00 04 	l.addi r4,r11,0x4
+ 40011f4:	9c 8b 00 01 	l.addi r4,r11,0x1
 	printf("address : %x\tdata : %x\n", addr, *addr);
  40011f8:	18 80 04 00 	l.movhi r4,0x400
  40011fc:	18 60 04 00 	l.movhi r3,0x400
@@ -1166,7 +1166,7 @@ int main(void)
 	mtspr(EXR1K_HTBCR,	 EXR1K_HTBCR_EN 	// HTB enable
  400122c:	9c 80 00 07 	l.addi r4,r0,0x7
  4001230:	9c 60 77 00 	l.addi r3,r0,0x7700
-	mtspr(SPR_EPCR_BASE, epcr);
+	mtspr(SPR_EPCR_BASE, ++epcr);
 	printf("address : %x\tdata : %x\n", addr, *addr);
 }
 
@@ -3768,7 +3768,7 @@ Disassembly of section .debug_loc:
 	...
   cc:	ec 00 00 00 	.word 0xec000000
   d0:	f7 00 03 7b 	l.cust6 
-  d4:	04 9f 00 00 	l.jal 27c00d4 <__lma_size+0x27bd694>
+  d4:	01 9f 00 00 	l.j 67c00d4 <__isr_stack_s+0x27b80d4>
 	...
   e0:	01 28 00 00 	l.j 4a000e0 <__isr_stack_s+0x9f80e0>
   e4:	01 40 00 02 	l.j 50000ec <__isr_stack_s+0xff80ec>

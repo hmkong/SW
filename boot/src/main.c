@@ -83,9 +83,9 @@ void syscall_A(void)
 void trapcall_A(void)
 {
 	volatile UINT *addr = (UINT *) 0x04001000;
-	UINT epcr = mfspr(SPR_EPCR_BASE) + sizeof(UINT);
+	UINT epcr = mfspr(SPR_EPCR_BASE);
 	
-	mtspr(SPR_EPCR_BASE, epcr);
+	mtspr(SPR_EPCR_BASE, ++epcr);
 	printf("address : %x\tdata : %x\n", addr, *addr);
 }
 
