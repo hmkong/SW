@@ -293,8 +293,7 @@ _break_vector:
         .org 0xe00
 _trap_vector:
 		PROLOG
-		CALL(XsrTrap)
-//		CALL(trapcall_A)
+		CALL(trapcall_A)
 		EPILOG
 
 //-----------------------------------------------------------------------------
@@ -382,8 +381,8 @@ _init_hw:
     l.nop
 
 // Init cache
-		CALL(_enable_icache)
-		CALL(_enable_dcache)
+		//CALL(_enable_icache)
+		//CALL(_enable_dcache)
 
 //-----------------------------------------------------------------------------
 // Ram init

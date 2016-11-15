@@ -55,7 +55,7 @@ _NOINS void enable_jtag_ctrl_exception(void)
 					//	|EXR1K_DSR_RE		// [10] Range exception               
 					//	|EXR1K_DSR_SCE		// [11] System call exception         	// Used @CPU
 						|EXR1K_DSR_FPE   	// [12] Floating Point Exception      
-						|EXR1K_DSR_TE	  	// [13] Trap exception  				
+					//	|EXR1K_DSR_TE	  	// [13] Trap exception  				
 					);	  	
 
 	//TRACE("DSR: %x \r\n",mfspr(EXR1K_DSR));
@@ -79,13 +79,14 @@ void syscall_A(void)
 		default		:	printf("Syscall : anything else\n"); break;
 	}
 }
-void trapcall_A(uint *addr)
+
+void trapcall_A(void)
 {
-	printf("AA\n");
-	while(*addr != 0x00){
-		printf("address : %d\tdata : %d\n", addr, *addr);
-		addr++;
-	}
+	volatile UINT *addr = (UINT *) 0x04001000;
+	UINT epcr = mfspr(SPR_EPCR_BASE) + sizeof(UINT);
+	
+	mtspr(SPR_EPCR_BASE, epcr);
+	printf("address : %x\tdata : %x\n", addr, *addr);
 }
 
 int main(void)
@@ -105,22 +106,22 @@ int main(void)
 	asm("l.sys 4");
 	asm("l.sys 5");
 	
-int i=0;
-for(i=0;i<32;i++){
-		
-	GpioEi(i);
-	GpioOutDir(i);
-	GpioSetLo(i);
-}
+	int i=0;
+	for(i=0;i<32;i++){
+			
+		GpioEi(i);
+		GpioOutDir(i);
+		GpioSetLo(i);
+	}
 
-int cnt=0;
+	int cnt=0;
 	while(1)
 	{
 		cnt++;
+		WaitXms(5000);
 		printf("*");
-		WaitXms(500);
+		asm("l.trap	0");
 		for(i=0;i<32;i++){
-			asm("l.trap 0");
 			if(cnt%2)GpioSetHi(i);
 			else     GpioSetLo(i);
 		}

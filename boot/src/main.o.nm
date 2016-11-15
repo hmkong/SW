@@ -6,7 +6,7 @@
          U WaitXms
 0000001c T disable_jtag_ctrl_exception
 00000000 T enable_jtag_ctrl_exception
-0000013c T main
+00000128 T main
          U mfspr
          U mtspr
          U printf
