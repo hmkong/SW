@@ -1,14 +1,12 @@
-         U GpioEi
-         U GpioOutDir
-         U GpioSetHi
-         U GpioSetLo
+00000000 D A
+00000020 D B
          U Uart_Init
-         U WaitXms
 0000001c T disable_jtag_ctrl_exception
 00000000 T enable_jtag_ctrl_exception
-00000128 T main
+00000138 T main
          U mfspr
          U mtspr
          U printf
+00000100 T proc
 00000038 T syscall_A
 000000dc T trapcall_A

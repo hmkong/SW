@@ -82,11 +82,25 @@ void syscall_A(void)
 
 void trapcall_A(void)
 {
-	volatile UINT *addr = (UINT *) 0x04001000;
-	UINT epcr = mfspr(SPR_EPCR_BASE) + sizeof(UINT);
+	UINT *epcr = (UINT *) mfspr(SPR_EPCR_BASE);
 	
-	mtspr(SPR_EPCR_BASE, epcr);
-	printf("address : %x\tdata : %x\n", addr, *addr);
+	mtspr(SPR_EPCR_BASE, ++epcr);
+}
+
+int A[] = {0, 1, 2, 3, 4, 5, 6, 7};
+int B[] = {10, 11, 12, 13, 14, 15, 16, 17};
+
+int proc(int *a, int *b){
+	TRAP
+	int sum = 0;
+	int i;
+	for(i=0; i<8; i++){
+		int val_a = *a;
+		int val_b = *b;
+		sum += val_a * val_b;
+		a++; b++;
+	}
+	return sum;
 }
 
 int main(void)
@@ -99,32 +113,8 @@ int main(void)
 	Uart_Init();
 	
 	printf("\nCPU START\n");
-	
-	asm("l.sys 1");
-	asm("l.sys 2");
-	asm("l.sys 3");
-	asm("l.sys 4");
-	asm("l.sys 5");
-	
-	int i=0;
-	for(i=0;i<32;i++){
-			
-		GpioEi(i);
-		GpioOutDir(i);
-		GpioSetLo(i);
-	}
 
-	int cnt=0;
-	while(1)
-	{
-		cnt++;
-		WaitXms(5000);
-		printf("*");
-		asm("l.trap	0");
-		for(i=0;i<32;i++){
-			if(cnt%2)GpioSetHi(i);
-			else     GpioSetLo(i);
-		}
-	}
+	printf("Scalar Product Sum = %d\n", proc(A, B));
+	
 	return 0;
 }
