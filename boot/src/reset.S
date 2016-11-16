@@ -381,8 +381,8 @@ _init_hw:
     l.nop
 
 // Init cache
-		//CALL(_enable_icache)
-		//CALL(_enable_dcache)
+		CALL(_enable_icache)
+		CALL(_enable_dcache)
 
 //-----------------------------------------------------------------------------
 // Ram init

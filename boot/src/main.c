@@ -55,7 +55,7 @@ _NOINS void enable_jtag_ctrl_exception(void)
 					//	|EXR1K_DSR_RE		// [10] Range exception               
 					//	|EXR1K_DSR_SCE		// [11] System call exception         	// Used @CPU
 						|EXR1K_DSR_FPE   	// [12] Floating Point Exception      
-					//	|EXR1K_DSR_TE	  	// [13] Trap exception  				
+						|EXR1K_DSR_TE	  	// [13] Trap exception  				
 					);	  	
 
 	//TRACE("DSR: %x \r\n",mfspr(EXR1K_DSR));
@@ -82,30 +82,16 @@ void syscall_A(void)
 
 void trapcall_A(void)
 {
-	UINT *epcr = (UINT *) mfspr(SPR_EPCR_BASE);
+//	UINT *epcr = (UINT *) mfspr(SPR_EPCR_BASE);
 	
-	mtspr(SPR_EPCR_BASE, ++epcr);
+//	mtspr(SPR_EPCR_BASE, ++epcr);
 }
-
-int A[] = {0, 1, 2, 3, 4, 5, 6, 7};
+int A[] = {0, 1, 2, 3, 4, 5, 6, 7};        
 int B[] = {10, 11, 12, 13, 14, 15, 16, 17};
-
-int proc(int *a, int *b){
-	TRAP
-	int sum = 0;
-	int i;
-	for(i=0; i<8; i++){
-		int val_a = *a;
-		int val_b = *b;
-		sum += val_a * val_b;
-		a++; b++;
-	}
-	return sum;
-}
-
+	
+extern int proc(int *a, int *b);
 int main(void)
 {
-	
 	mtspr(EXR1K_HTBCR,	 EXR1K_HTBCR_EN 	// HTB enable
 						|EXR1K_HTBCR_NE							// NOP enable
 						|EXR1K_HTBCR_TE	);					// Timestamp enable: Enable Free running counter
@@ -113,8 +99,13 @@ int main(void)
 	Uart_Init();
 	
 	printf("\nCPU START\n");
-
-	printf("Scalar Product Sum = %d\n", proc(A, B));
+	
+	
+	printf("TEST\n");
+	int sum = proc(A, B);
+	TRAP
+	
+	printf("Scalar Product Sum = %d\n", sum);
 	
 	return 0;
 }

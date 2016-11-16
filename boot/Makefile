@@ -4,6 +4,7 @@ include ./config.mk
 
 ASMS	 = src/reset.o
 ASMS	+= src/cache.o
+ASMS	+= src/proc.o
 OBJS 	+= src/main.o
 #OBJS 	+= src/ddr.o
 #OBJS	+= src/uart.o
